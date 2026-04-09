@@ -1,19 +1,19 @@
 // your code here
-document.getElementById("button").addEventListener("click", function () {
-            let name = document.getElementById("name").value;
-            let year = document.getElementById("year").value;
+document.addEventListener("DOMContentLoaded", function () {
+      const button = document.getElementById("button");
 
-            let baseURL = "https://localhost:8080/";
-            let queryParams = [];
-            if (name) {
-                queryParams.push("name=" + encodeURIComponent(name));
-            }
-            if (year) {
-                queryParams.push("year=" + encodeURIComponent(year));
-            }
-            let finalURL = baseURL;
-            if (queryParams.length > 0) {
-                finalURL += "?" + queryParams.join("&");
-            }
-           document.getElementById("url").innerText = finalURL;
-        });
+      button.addEventListener("click", function () {
+        let name = document.getElementById("name").value;
+        let year = document.getElementById("year").value;
+
+        let baseUrl = "https://localhost:8080/";
+        let params = [];
+
+        if (name) params.push(`name=${name}`);
+        if (year) params.push(`year=${year}`);
+
+        let query = params.length ? "?" + params.join("&") : "";
+
+        document.getElementById("url").textContent = baseUrl + query;
+      });
+    });
